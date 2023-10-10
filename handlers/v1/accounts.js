@@ -26,7 +26,11 @@ module.exports = {
 
   getAllAccounts: async (req, res, next) => {
     try {
-      let account = await prisma.bankAccount.findMany({});
+      let account = await prisma.bankAccount.findMany({
+        orderBy: {
+          id: "asc",
+        },
+      });
       res.status(201).json({
         status: true,
         message: "all account",
@@ -65,13 +69,13 @@ module.exports = {
     }
   },
 
-  /* updateAccountBank: async (req, res, next) => {
+  updateAccountBank: async (req, res, next) => {
     try {
-      let accountId = parseInt(req.params.accountId);
+      let { accountId } = req.params;
       let { bankName, bankAccountNumber, balance } = req.body;
 
       let updatedAccount = await prisma.bankAccount.update({
-        where: { id: accountId },
+        where: { id: Number(accountId) },
         data: {
           bankName,
           bankAccountNumber,
@@ -87,5 +91,22 @@ module.exports = {
     } catch (error) {
       next(error);
     }
-  }, */
+  },
+
+  deleteAccount: async (req, res, next) => {
+    try {
+      let { accountId } = req.params;
+      let deletedAccount = await prisma.bankAccount.delete({
+        where: { id: Number(accountId) },
+      });
+
+      res.status(200).json({
+        status: true,
+        message: "delete successful",
+        data: deletedAccount,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

@@ -6,11 +6,14 @@ const {
   updateUser,
   getPaginationUser,
   getDetailUser,
+  deleteUser,
 } = require("../handlers/v1/user");
 const {
   createAccounts,
   getAllAccounts,
   getDetailAccount,
+  updateAccountBank,
+  deleteAccount,
 } = require("../handlers/v1/accounts");
 const {
   createTransaksi,
@@ -30,6 +33,7 @@ router.get("/", (req, res) => {
 router.post("/users", createUser);
 router.get("/users", getAllUser);
 router.get("/users/:userId", getDetailUser);
+router.delete("/users/:userId", deleteUser);
 router.get("/pagination-user", getPaginationUser);
 router.put("/users/:userId", updateUser);
 
@@ -37,6 +41,8 @@ router.put("/users/:userId", updateUser);
 router.post("/accounts", createAccounts);
 router.get("/accounts", getAllAccounts);
 router.get("/accounts/:accountId", getDetailAccount);
+router.put("/accounts/:accountId", updateAccountBank);
+router.delete("/accounts/:accountId", deleteAccount);
 
 // route transaksi
 router.post("/transactions", createTransaksi);

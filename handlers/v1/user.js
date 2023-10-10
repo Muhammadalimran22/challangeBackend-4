@@ -18,7 +18,7 @@ module.exports = {
       });
       res.status(201).json({
         status: true,
-        message: "created User",
+        message: "created user",
         data: user,
       });
     } catch (err) {
@@ -126,9 +126,6 @@ module.exports = {
           profile: {
             create: profile,
           },
-          BankAccount: {
-            create: BankAccount,
-          },
         },
         include: { profile: true },
       });
@@ -137,6 +134,23 @@ module.exports = {
         status: true,
         message: "data pengguna dan profile update succes",
         data: updatedUser,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  deleteUser: async (req, res, next) => {
+    try {
+      let { userId } = req.params;
+      let deletedUser = await prisma.user.delete({
+        where: { id: Number(userId) },
+      });
+
+      res.status(200).json({
+        status: true,
+        message: "delete successful",
+        data: deletedUser,
       });
     } catch (err) {
       next(err);

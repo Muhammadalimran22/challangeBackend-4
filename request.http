@@ -23,19 +23,22 @@ GET http://localhost:3000/api/v1/users/1
 ###
 GET http://localhost:3000/api/v1/pagination-user?limit=5&page=1
 
+###
+DELETE http://localhost:3000/api/v1/users/10
+
 
 ###
-PUT http://localhost:3000/api/v1/users/5
+PUT http://localhost:3000/api/v1/users/1
 Content-Type: application/json
 
 {
-  "name": "muhammad al imran 5",
-  "email": "muhammadalimran5@gmail.com",
+  "name": "muhammad al imran 1",
+  "email": "muhammadalimran1@gmail.com",
   "password": "imran12345",
   "profile": {
     "identifyType": "KTP",
     "identifyNumber": "1234567890",
-    "address": "Aceh 5"
+    "address": "Aceh 1"
   }
 }
 
@@ -57,14 +60,17 @@ GET http://localhost:3000/api/v1/accounts
 GET http://localhost:3000/api/v1/accounts/1
 
 ###
-# PUT http://localhost:3000/api/v1/accounts-update/1
-# Content-Type: application/json
+DELETE http://localhost:3000/api/v1/accounts/9
 
-# {
-#   "bankName": "Bank Aceh",
-#   "bankAccountNumber": "1234567890",
-#   "balance": 5000.0
-# }
+###
+PUT http://localhost:3000/api/v1/accounts/9
+Content-Type: application/json
+
+{
+  "bankName": "Bank Aceh",
+  "bankAccountNumber": "1234567890",
+  "balance": 500000.00
+}
 
 
 ### TRANSAKSI
