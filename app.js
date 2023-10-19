@@ -3,9 +3,20 @@ const express = require("express");
 const app = express();
 const { PORT = 3000 } = process.env;
 const endpointV1 = require("./routes/endpointV1");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yaml");
+const morgan = require("morgan");
+
+const fs = require("fs");
+const file = fs.readFileSync("./swagger.yaml", "utf8");
+const swaggerDocument = YAML.parse(file);
+const authRouter = require("./routes/auth.routes");
 
 app.use(express.json());
+app.use(morgan("dev"));
 app.use("/api/v1", endpointV1);
+app.use("/api/v1/auth", authRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 404 error handling
 app.use((req, res, next) => {

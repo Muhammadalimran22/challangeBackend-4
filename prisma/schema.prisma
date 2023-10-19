@@ -15,7 +15,7 @@ model User {
   name        String
   email       String        @unique
   password    String
-  profile     Profile?
+  profile     Profile[]     @relation("profile_idx")
   BankAccount BankAccount[]
 }
 
@@ -25,7 +25,7 @@ model Profile {
   identifyType   String
   identifyNumber String
   address        String
-  user           User   @relation(fields: [userId], references: [id])
+  user           User   @relation("profile_idx", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model BankAccount {
@@ -34,7 +34,7 @@ model BankAccount {
   bankName          String
   bankAccountNumber String
   balance           Float
-  user              User        @relation(fields: [userId], references: [id])
+  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   transactionsFrom  Transaksi[] @relation("SourceAccount")
   transactionsTo    Transaksi[] @relation("DestinasiAccount")
 }

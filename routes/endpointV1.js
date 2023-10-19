@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { restrict } = require("../middlewares/auth.middlewares");
 const {
   createUser,
   getAllUser,
@@ -30,23 +31,23 @@ router.get("/", (req, res) => {
 });
 
 // route user
-router.post("/users", createUser);
-router.get("/users", getAllUser);
-router.get("/users/:userId", getDetailUser);
-router.delete("/users/:userId", deleteUser);
-router.get("/pagination-user", getPaginationUser);
-router.put("/users/:userId", updateUser);
+router.post("/users", restrict, createUser);
+router.get("/users", restrict, getAllUser);
+router.get("/users/:userId", restrict, getDetailUser);
+router.delete("/users/:userId", restrict, deleteUser);
+router.get("/pagination-user", restrict, getPaginationUser);
+router.put("/users/:userId", restrict, updateUser);
 
 // route account
-router.post("/accounts", createAccounts);
-router.get("/accounts", getAllAccounts);
-router.get("/accounts/:accountId", getDetailAccount);
-router.put("/accounts/:accountId", updateAccountBank);
-router.delete("/accounts/:accountId", deleteAccount);
+router.post("/accounts", restrict, createAccounts);
+router.get("/accounts", restrict, getAllAccounts);
+router.get("/accounts/:accountId", restrict, getDetailAccount);
+router.put("/accounts/:accountId", restrict, updateAccountBank);
+router.delete("/accounts/:accountId", restrict, deleteAccount);
 
 // route transaksi
-router.post("/transactions", createTransaksi);
-router.get("/transactions", getAllTransaksi);
-router.get("/transactions/:transactionId", getDetailTransaksi);
+router.post("/transactions", restrict, createTransaksi);
+router.get("/transactions", restrict, getAllTransaksi);
+router.get("/transactions/:transactionId", restrict, getDetailTransaksi);
 
 module.exports = router;

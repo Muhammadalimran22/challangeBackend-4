@@ -1,5 +1,5 @@
 ### USER
-POST http://localhost:3000/api/v1/users
+POST http://localhost:8000/api/v1/users
 Content-Type: application/json
 
 {
@@ -15,20 +15,22 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/v1/users
-
-###
-GET http://localhost:3000/api/v1/users/1
-
-###
-GET http://localhost:3000/api/v1/pagination-user?limit=5&page=1
-
-###
-DELETE http://localhost:3000/api/v1/users/10
+GET http://localhost:8000/api/v1/users
 
 
 ###
-PUT http://localhost:3000/api/v1/users/1
+GET http://localhost:8000/api/v1/users/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY5NzcwMzkzOX0.WKyBZhJOgPvqHkbmG25pGOrJhdZcujfS3WdWX6yoyNY
+
+###
+GET http://localhost:8000/api/v1/pagination-user?limit=5&page=1
+
+###
+DELETE http://localhost:8000/api/v1/users/5
+
+
+###
+PUT http://localhost:8000/api/v1/users/11
 Content-Type: application/json
 
 {
@@ -43,27 +45,29 @@ Content-Type: application/json
 }
 
 ### ACCOUNT
-POST http://localhost:3000/api/v1/accounts
+POST http://localhost:8000/api/v1/accounts
 Content-Type: application/json
 
 {
-  "userId": 10,
+  "userId": 11,
   "bankName": "Bank BNI",
   "bankAccountNumber": "1234567890",
   "balance": 5000.00
 }
 
-###
-GET http://localhost:3000/api/v1/accounts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY5NzcwMzkzOX0.WKyBZhJOgPvqHkbmG25pGOrJhdZcujfS3WdWX6yoyNY
 
 ###
-GET http://localhost:3000/api/v1/accounts/1
+GET http://localhost:8000/api/v1/accounts
 
 ###
-DELETE http://localhost:3000/api/v1/accounts/9
+GET http://localhost:8000/api/v1/accounts/1
 
 ###
-PUT http://localhost:3000/api/v1/accounts/9
+DELETE http://localhost:8000/api/v1/accounts/16
+
+###
+PUT http://localhost:8000/api/v1/accounts/1
 Content-Type: application/json
 
 {
@@ -74,17 +78,50 @@ Content-Type: application/json
 
 
 ### TRANSAKSI
-POST http://localhost:3000/api/v1/transactions
+POST http://localhost:8000/api/v1/transactions
 Content-Type: application/json
 
 {
-  "sourceAccountId": 1,
-  "destinasiAccountId": 2,
-  "amount": 200
+  "sourceAccountId": 7,
+  "destinasiAccountId": 8,
+  "amount": 1000
+}
+
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY5NzcwMzkzOX0.WKyBZhJOgPvqHkbmG25pGOrJhdZcujfS3WdWX6yoyNY
+
+###
+GET http://localhost:8000/api/v1/transactions
+
+###
+GET http://localhost:8000/api/v1/transactions/3
+
+
+###
+POST http://localhost:8000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "name":"imran22",
+    "email":"imran22@mail.com",
+    "password":"imran12345",
+    "password_confirmation":"imran12345",
+    "profile": {
+      "identifyType": "KTP",
+      "identifyNumber": "1234567890",
+      "address": "Aceh 1"
+  }
+}
+
+
+###
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"imran22@mail.com",
+    "password":"imran12345"
 }
 
 ###
-GET http://localhost:3000/api/v1/transactions
-
-###
-GET http://localhost:3000/api/v1/transactions/1
+GET http://localhost:8000/api/v1/auth/whoami
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY5NzcwMzkzOX0.WKyBZhJOgPvqHkbmG25pGOrJhdZcujfS3WdWX6yoyNY

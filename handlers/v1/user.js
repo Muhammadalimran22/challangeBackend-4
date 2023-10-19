@@ -31,7 +31,7 @@ module.exports = {
       let users = await prisma.user.findMany({
         include: {
           profile: true,
-          BankAccount: true,
+          // BankAccount: true,
         },
         orderBy: {
           id: "asc",
@@ -57,7 +57,7 @@ module.exports = {
         },
         include: {
           profile: true,
-          BankAccount: true,
+          // BankAccount: true,
         },
       });
 
@@ -143,7 +143,7 @@ module.exports = {
   deleteUser: async (req, res, next) => {
     try {
       let { userId } = req.params;
-      let deletedUser = await prisma.user.delete({
+      const deletedUser = await prisma.user.delete({
         where: { id: Number(userId) },
       });
 
